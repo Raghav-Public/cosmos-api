@@ -16,6 +16,7 @@ import com.azure.cosmos.models.CosmosAsyncContainerResponse;
 import com.azure.cosmos.models.CosmosAsyncDatabaseResponse;
 import com.azure.cosmos.models.CosmosAsyncItemResponse;
 import com.azure.cosmos.models.CosmosContainerProperties;
+import com.azure.cosmos.models.CosmosItemRequestOptions;
 import com.azure.cosmos.models.FeedOptions;
 import com.azure.cosmos.models.PartitionKey;
 import com.microsoft.api.model.StoreItem;
@@ -138,4 +139,10 @@ public class ItemDAL {
             query, queryOptions, StoreItem.class);
         return pagedFluxResponse;
     }
+	public Mono<CosmosAsyncItemResponse<StoreItem>> createUpdateItem(StoreItem storeItem) {
+		return container.upsertItem(storeItem);
+	}
+	public Mono<CosmosAsyncItemResponse> deleteItem(String storeItemId, String partitionId) {
+		return container.deleteItem(storeItemId, new PartitionKey(partitionId));
+	}
 }

@@ -94,15 +94,24 @@ public class ItemDAL {
             .buildAsyncClient();
 	}
 	
+	private void printError() {
+	
+	}
 	private void createDatabaseIfNotExists() throws Exception {
         System.out.println("Create database " + this.getDatabaseName() + " if not exists.");
         Mono<CosmosAsyncDatabaseResponse> databaseIfNotExists = 
         				client.createDatabaseIfNotExists(this.getDatabaseName());
-        databaseIfNotExists.flatMap(databaseResponse -> {
+        databaseIfNotExists.subscribe(
+        		value -> System.out.println("connected"),
+        		error -> error.printStackTrace()
+        );
+        databaseIfNotExists
+        .flatMap(databaseResponse -> {
             database = databaseResponse.getDatabase();
             System.out.println("Checking database " + database.getId() + " completed!\n");
             return Mono.empty();
-        }).block();
+        })
+        .block();
     }
 	
 	private void createContainerIfNotExists() throws Exception {

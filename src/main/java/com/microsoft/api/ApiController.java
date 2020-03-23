@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
 @RestController
 public class ApiController {
 	private static String HOST = "https://rdsqlsink.documents.azure.com:443/";
-	private static String MASTERKEY = "xnPzWC3Db0vo0Pme7oWlIzUIdCa8fdHq4WHdgtBbhP4JBUHEfFd3LduDF201xQbO4rj18LZai70c53ptondpRg==";
+	private static String MASTERKEY = "gGWr038H8Gqr4fNDDg8WLym8XJwbPaXeDn0YXRWcO4c3A9Xbf7glYGjsNvTgdelXGHb7eZHA19fHcjHa8pka1g==";
 	private static String DATABASENAME = "testdb";
 	private static String CONTAINERNAME = "gsfnew";
 	
